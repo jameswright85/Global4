@@ -6,6 +6,8 @@ COPY composer.lock composer.json /var/www/
 # Set working directory
 WORKDIR /var/www
 
+RUN echo "Acquire::Check-Valid-Until \"false\";\nAcquire::Check-Date \"false\";" | cat > /etc/apt/apt.conf.d/10no--check-valid-until
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
